@@ -30,9 +30,11 @@ const UserSchema = new Schema(
 )
 
 UserSchema.statics.findByCredentials = async function (username, password) {
+  //find if that user exists in dv
   const user = await this.findOne({ username })
 
   if (user) {
+    // compare the provieded pass with the one in db
     const isMatch = await bcrypt.compare(password, user.password)
     if (isMatch) return user
     else return null

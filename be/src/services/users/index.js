@@ -50,7 +50,7 @@ usersRouter.put("/me", basic, async (req, res, next) => {
 usersRouter.delete("/me", basic, async (req, res, next) => {
   try {
     await req.user.deleteOne()
-    res.status(204).send("Deleted")
+    res.status(204).send(req.user._id)
   } catch (error) {
     next(error)
   }
